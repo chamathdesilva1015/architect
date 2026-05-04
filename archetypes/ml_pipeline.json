@@ -1,0 +1,25 @@
+{
+  "name": "ml_pipeline",
+  "language": "Python",
+  "philosophy": "Gradient Forest / Cold Start",
+  "usage": "When you want to verify an ML training loop instantly using synthetic data.",
+  "variables": {
+    "project_name": {
+      "prompt": "Name of your ML Pipeline",
+      "type": "string",
+      "default": "ML_Founder_Pipeline"
+    }
+  },
+  "descriptions": {
+    "main.py": "Synthetic Data Gen & Training loop",
+    "requirements.txt": "scikit-learn, pandas, numpy",
+    "GUIDE.md": "START HERE"
+  },
+  "folders": [],
+  "files": {
+    "main.py": "main_ml.py.j2",
+    "data_gen.py": "data_gen_ml.py.j2",
+    "requirements.txt": "requirements_ml.txt.j2",
+    "GUIDE.md": "GUIDE_ml.md.j2"
+  }
+}

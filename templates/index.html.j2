@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ app_name|default("Minimal Web App") }}</title>
+    <link rel="stylesheet" href="css/design_system.css">
+</head>
+<body>
+    <div id="app-root">
+        <!-- Components injected here -->
+    </div>
+
+    <!-- Decoupled API Logic -->
+    <script type="module" src="api/routes.js"></script>
+    <!-- Component Logic -->
+    <script type="module">
+        import { renderHeader } from './components/header.js';
+        
+        document.addEventListener('DOMContentLoaded', () => {
+            const root = document.getElementById('app-root');
+            root.appendChild(renderHeader('{{ app_name|default("Minimal Web App") }}'));
+        });
+    </script>
+</body>
+</html>

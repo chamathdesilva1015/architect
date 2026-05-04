@@ -1,0 +1,19 @@
+cmake_minimum_required(VERSION 3.10)
+
+# Project name is injected by Jinja2 from the folder name or provided context
+project({{ project_name|default("cpp_project") }} VERSION 1.0)
+
+set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD_REQUIRED True)
+
+# Add include directories
+include_directories(include)
+
+# Find threads package since this is a multi-threaded system
+find_package(Threads REQUIRED)
+
+# Add executable
+add_executable(${PROJECT_NAME} src/main.cpp)
+
+# Link threads
+target_link_libraries(${PROJECT_NAME} PRIVATE Threads::Threads)

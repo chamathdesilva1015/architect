@@ -1,0 +1,24 @@
+import numpy as np
+from sklearn.datasets import make_classification
+
+def create_complex_dataset():
+    """
+    Creates a complex synthetic dataset (non-linear with noise) 
+    to simulate a real-world Gradient Forest problem.
+    """
+    print("Simulating real-world data distribution...")
+    
+    # Generate non-linear classification data
+    X, y = make_classification(
+        n_samples=2000, 
+        n_features=25, 
+        n_informative=18, 
+        n_redundant=2, 
+        n_repeated=0,
+        n_clusters_per_class=2,
+        flip_y=0.05, # Add noise
+        class_sep=0.8, # Make classes overlap slightly
+        random_state=42
+    )
+    
+    return X, y

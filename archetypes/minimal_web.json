@@ -1,0 +1,32 @@
+{
+  "name": "minimal_web",
+  "language": "Vanilla JS",
+  "philosophy": "Minimalist / Component-Based",
+  "usage": "When you want to build a fast, zero-dependency web app with a clean design system.",
+  "variables": {
+    "app_name": {
+      "prompt": "Name of your Web App",
+      "type": "string",
+      "default": "MinimalFounderApp"
+    }
+  },
+  "descriptions": {
+    "css/design_system.css": "Pre-defined color palette and typography",
+    "index.html": "Main entry point",
+    "components/header.js": "Clean UI component logic",
+    "api/routes.js": "Data fetching logic (decoupled)",
+    "GUIDE.md": "START HERE"
+  },
+  "folders": [
+    "css",
+    "components",
+    "api"
+  ],
+  "files": {
+    "css/design_system.css": "design_system.css.j2",
+    "index.html": "index.html.j2",
+    "components/header.js": "components_header.js.j2",
+    "api/routes.js": "api_routes.js.j2",
+    "GUIDE.md": "GUIDE_web.md.j2"
+  }
+}

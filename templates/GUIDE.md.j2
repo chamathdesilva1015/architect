@@ -1,0 +1,37 @@
+# {{ project_name|default("Concurrent Task Processor") }}
+
+**Author:** {{ author_name|default("Unknown") }}
+**Threads Configured:** {{ max_threads|default(4) }}
+
+## Welcome to your Systems Blueprint!
+
+This directory contains a foundational Concurrent Task Processor. Rather than starting from scratch, you have a thread-safe task queue and a thread pool pre-configured.
+
+### Knowledge Transfer: The Producer-Consumer Pattern
+This boilerplate implements the classic **Producer-Consumer pattern**. 
+- **Producer**: The main thread (or any thread) calling `enqueue_task()`. It "produces" work and pushes it onto the `ThreadSafeQueue`.
+- **Consumer**: The `worker_thread`s inside the pool. They idle until the `condition_variable` wakes them up, at which point they pop a task and execute it.
+- **Why?** In complex algorithms or network servers, simple branching (creating a new `std::thread` for every single task) incurs massive overhead due to context switching and memory allocation. A Thread Pool initializes a fixed number of threads (`{{ max_threads }}`) upfront. These threads idle until a task is ready, making task execution virtually instantaneous and preventing your system from being overwhelmed.
+
+### Next Steps: How to add a new "Task" type
+1. Open `src/main.cpp`.
+2. Locate the `processor.enqueue_task(...)` loop.
+3. You can pass any C++ lambda or `std::function` into it.
+
+**Example:**
+```cpp
+processor.enqueue_task([] {
+    // Your complex algorithm or data processing logic here!
+    calculate_mandelbrot();
+});
+```
+
+### Where to implement specific logic
+- **Queue Modifications:** Open `include/processor.hpp` to modify the `ThreadSafeQueue`.
+- **Worker Logic:** Open `src/main.cpp` and modify the `TaskProcessor` class to add prioritization, timeouts, or specific worker logic.
+
+### Health Check
+If you are unsure if you accidentally deleted critical blueprint files, simply run the Architect check utility from this directory:
+```bash
+python /path/to/architect/cli.py check .
+```

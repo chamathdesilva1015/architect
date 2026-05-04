@@ -1,0 +1,21 @@
+export function renderHeader(title) {
+    const headerDiv = document.createElement('div');
+    headerDiv.className = 'header-component';
+    
+    const h1 = document.createElement('h1');
+    h1.textContent = title;
+    
+    const btn = document.createElement('button');
+    btn.textContent = 'Fetch Data';
+    
+    // Wire up to API routes logic later
+    btn.onclick = async () => {
+        const { fetchData } = await import('../api/routes.js');
+        fetchData();
+    };
+    
+    headerDiv.appendChild(h1);
+    headerDiv.appendChild(btn);
+    
+    return headerDiv;
+}

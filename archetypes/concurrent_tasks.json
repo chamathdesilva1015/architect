@@ -1,0 +1,41 @@
+{
+  "name": "concurrent_tasks",
+  "language": "C++",
+  "philosophy": "High-Concurrency / Producer-Consumer",
+  "usage": "When you need a thread-safe task processor or a performant background queue.",
+  "variables": {
+    "project_name": {
+      "prompt": "What is the name of your project?",
+      "type": "string",
+      "default": "MyConcurrentApp"
+    },
+    "author_name": {
+      "prompt": "Who is the author of this project?",
+      "type": "string",
+      "default": "Developer"
+    },
+    "max_threads": {
+      "prompt": "What should the default maximum number of threads be?",
+      "type": "int",
+      "default": "dynamic_cores"
+    }
+  },
+  "descriptions": {
+    "src": "Core task processing logic",
+    "include": "Thread-safe queue headers",
+    "GUIDE.md": "START HERE (Architecture Rationale)",
+    "src/main.cpp": "Entry point and thread pool init",
+    "include/processor.hpp": "ThreadSafeQueue interface"
+  },
+  "folders": [
+    "src",
+    "include",
+    "build"
+  ],
+  "files": {
+    "include/processor.hpp": "processor.hpp.j2",
+    "src/main.cpp": "main_concurrent.cpp.j2",
+    "GUIDE.md": "GUIDE.md.j2",
+    "Makefile": "Makefile_cpp.j2"
+  }
+}

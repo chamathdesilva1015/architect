@@ -1,0 +1,88 @@
+#include <iostream>
+#include <vector>
+#include <thread>
+#include "ThreadSafeQueue.h"
+
+// A basic Thread Pool Skeleton
+class ThreadPool {
+public:
+    ThreadPool(size_t num_threads) : stop(false) {
+        for(size_t i = 0; i < num_threads; ++i) {
+            workers.emplace_back([this] {
+                while(true) {
+                    std::function<void()> task;
+                    
+                    {
+                        std::unique_lock<std::mutex> lock(this->queue_mutex);
+                        this->condition.wait(lock, [this] { 
+                            return this->stop || !this->tasks.empty(); 
+                        });
+                        
+                        if(this->stop && this->tasks.empty())
+                            return;
+                            
+                        task = std::move(this->tasks.front());
+                        this->tasks.pop_front();
+                    }
+                    
+                    // Execute the task
+                    task();
+                }
+            });
+        }
+    }
+
+    // Add a simple task enqueue method
+    template<class F>
+    void enqueue(F&& f) {
+        {
+            std::unique_lock<std::mutex> lock(queue_mutex);
+            tasks.push_back(std::forward<F>(f));
+        }
+        condition.notify_one();
+    }
+
+    ~ThreadPool() {
+        {
+            std::unique_lock<std::mutex> lock(queue_mutex);
+            stop = true;
+        }
+        condition.notify_all();
+        for(std::thread &worker: workers) {
+            worker.join();
+        }
+    }
+
+private:
+    std::vector<std::thread> workers;
+    // Using a simple deque for demonstration; replace with ThreadSafeQueue as needed
+    std::deque<std::function<void()>> tasks;
+    
+    std::mutex queue_mutex;
+    std::condition_variable condition;
+    bool stop;
+};
+
+int main() {
+    std::cout << "Starting {{ project_name|default('cpp_project') }} Multi-threaded System..." << std::endl;
+    
+    // Demonstrate basic usage
+    ThreadSafeQueue<int> tsQueue;
+    tsQueue.push(42);
+    
+    int val;
+    if(tsQueue.try_pop(val)) {
+        std::cout << "Popped value: " << val << std::endl;
+    }
+
+    // Example Thread Pool
+    ThreadPool pool(4);
+    for(int i = 0; i < 8; ++i) {
+        pool.enqueue([i] {
+            std::cout << "Task " << i << " executed by thread " << std::this_thread::get_id() << std::endl;
+        });
+    }
+
+    std::this_thread::sleep_for(std::chrono::seconds(1));
+    return 0;
+}

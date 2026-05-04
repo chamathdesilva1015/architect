@@ -1,0 +1,19 @@
+# {{ app_name }}
+
+A minimalist, high-performance web architecture.
+
+## Why this Architecture?
+By decoupling your logic into Components and APIs without relying on frameworks like React or Vue, you significantly reduce overhead and bundle size.
+
+## Philosophy
+**{{ philosophy|capitalize }}**
+
+{% if philosophy == 'speed' %}
+You chose speed! Feel free to import heavy utility libraries or npm packages into `api/routes.js`.
+{% else %}
+You chose performance! Stick to Vanilla JS, the Fetch API, and minimal DOM manipulation.
+{% endif %}
+
+## Next Steps
+1. Customize the CSS variables in `css/design_system.css`.
+2. Build new components in the `components/` folder and import them into `index.html`.

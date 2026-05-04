@@ -1,0 +1,20 @@
+# {{ project_name }}
+
+A minimalist Machine Learning Pipeline with a "Cold Start" capability.
+
+## Why this Architecture?
+This pipeline is designed for immediate testing. By relying on synthetic data generation (`make_classification`), you can verify that your Gradient Forest model and evaluation metrics work *before* you spend hours cleaning a real dataset.
+
+## Philosophy
+**{{ philosophy|capitalize }}**
+
+{% if philosophy == 'speed' %}
+You chose speed! The Gradient Forest is tuned for fast training cycles (lower depth, fewer estimators).
+{% else %}
+You chose performance! The Gradient Forest is tuned for higher accuracy (deeper trees, more estimators).
+{% endif %}
+
+## Next Steps
+1. Run `pip install -r requirements.txt`.
+2. Run `python main.py` to see the synthetic data pipeline in action.
+3. Replace the `generate_synthetic_data()` function with your actual `pandas.read_csv()` data loading logic.

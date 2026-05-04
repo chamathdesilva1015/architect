@@ -1,0 +1,19 @@
+// Simulated API requests
+// This layer isolates data fetching from UI rendering
+
+export async function fetchData() {
+    console.log("Fetching data from backend...");
+    // {% if philosophy == 'speed' %}
+    // Note: You chose Speed! Using heavy libraries like axios would go here.
+    // {% else %}
+    // Note: You chose Performance! Using vanilla fetch API.
+    // {% endif %}
+    
+    try {
+        // const response = await fetch('/api/data');
+        // const data = await response.json();
+        console.log("Data fetched successfully.");
+    } catch (e) {
+        console.error("Error fetching data:", e);
+    }
+}
