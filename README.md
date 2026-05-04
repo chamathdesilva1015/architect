@@ -9,6 +9,16 @@ Architect is a professional-grade CLI tool designed to solve the "cold start" pr
 *   **Clean Architecture**: Pre-defined separation between Domain, API, and UI layers.
 *   **Mentor-Driven**: Every generated project includes a `GUIDE.md` that explains the *why* behind the system design.
 
+## ⚡️ What can it do?
+Architect is built to handle the boring stuff so you can focus on building.
+*   **Rapid Sketching**: Save your 3:00 AM ideas instantly with `architect sketch`.
+*   **Instant Blueprints**: Generate professional project structures for Web, C++, or ML in seconds.
+*   **Live Launch**: Use `--serve` to scaffold a website and open it in your browser immediately.
+*   **ML Cold Start**: Get a working Machine Learning pipeline with fake data ready to train on day one.
+*   **Smart Map**: See a visual "map" of your project files with descriptions of what each file does.
+*   **History Vault**: Keep track of every project you've ever started with `architect stats`.
+*   **Global Access**: Run the `architect` command from any folder on your Mac.
+
 ## 🛠 The Workflow
 1.  **`sketch`**: Rapidly document your "3:00 AM ideas" into a technical requirement log.
 2.  **`generate`**: Scaffolding your foundation from a gallery of proven blueprints.
